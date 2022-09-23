@@ -42,7 +42,7 @@ If you've installed via other means, you may need add the completion to your com
 ```
 kubectl completion bash $(brew --prefix)/etc/bash_completion.d/kubectl
 ```
-Installing bash completion on Linux: \
+Installing bash completion on Linux:
 
 Load the kubectl completion code for bash into the current shell
 ```
