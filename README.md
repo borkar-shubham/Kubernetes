@@ -8,13 +8,15 @@ The kubectl version has to be within one minor version difference of the Kuberne
 Kubectl can be installed on Ubuntu, Debian, CentOS, RedHat operating systems.
 
 ###### Ubuntu / Debian
+```
 sudo apt-get update && sudo apt-get install -y apt-transport-https
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
 sudo apt-get update
 sudo apt-get install -y kubectl
-
+```
 ###### CentOS / RedHat
+```
 cat <<EOF /etc/yum.repos.d/kubernetes.repo
 name=Kubernetes baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64 enabled=1 
 gpgcheck=1 
@@ -24,34 +26,43 @@ EOF
 
 yum install -y kubectl
 For further information about kubectl installation method, please refer to the Kubernetes documentation.
-
+```
 ###### Completion
 Installing bash completion on macOS using homebrew
 If running Bash 3.2 included with macOS
+```
 brew install bash-completion
+```
 or, if running Bash 4.1+
+```
 brew install bash-completion@2
-If kubectl is installed via homebrew, this should start working immediately.
-If you've installed via other means, you may need add the completion to your completion directory
+```
+If kubectl is installed via homebrew, this should start working immediately. \
+If you've installed via other means, you may need add the completion to your completion directory.
+```
 kubectl completion bash $(brew --prefix)/etc/bash_completion.d/kubectl
-
-Installing bash completion on Linux:
+```
+Installing bash completion on Linux: \
 
 Load the kubectl completion code for bash into the current shell
+```
 source <(kubectl completion bash)
+```
 Write bash completion code to a file and source if from .bash_profile
+```
 kubectl completion bash ~/.kube/completion.bash.inc
 printf "
 Kubectl shell completion
 source '$HOME/.kube/completion.bash.inc'
 " > $HOME/.bash_profile
 source $HOME/.bash_profile
-
+```
 Load the kubectl completion code for zsh[1] into the current shell: 
 source <(kubectl completion zsh)
 Set the kubectl completion code for zsh[1] to autoload on startup
+```
 kubectl completion zsh "${fpath[1]}/_kubectl"
-
+```
 ## Syntax
 Kubectl is a powerful tool to manage each object on a Kubernetes cluster. The command has a simple and unique syntax to manage everything :
 
