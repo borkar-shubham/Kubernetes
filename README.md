@@ -91,20 +91,24 @@ cat pod.json | kubectl create -f -
 kubectl create -f docker-registry.yaml --edit --output-version=v1 -o json
 ```
 #### Create all the resources avaibale in the folder 
+```
 kubeclt create -f <folder_name
-
-### #Delete
+```
+### [Delete]
 Delete resources by filenames, stdin, resources and names, or by resources and label selector.
 
 #### Delete a pod using the type and name specified in pod.json.
+```
 kubectl delete -f ./pod.json
-
+```
 #### Delete a pod based on the type and name in the JSON passed into stdin.
+```
 cat pod.json | kubectl delete -f -
-
+```
 #### Delete pods and services with same names "baz" and "foo"
+```
 kubectl delete pod,service baz foo
-
+```
 #### Delete pods and services with label name=myLabel.
 kubectl delete pods,services -l name=myLabel
 
