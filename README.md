@@ -68,7 +68,7 @@ Kubectl is a powerful tool to manage each object on a Kubernetes cluster. The co
 ```
 kubectl [command] [TYPE] [NAME] [flags]
 ```
-command : specifies the operation that you want to perform on one or more resources (create, get, describe, delete). 
+command : specifies the operation that you want to perform on one or more resources (create, get, describe, delete). \
 type : specifies the resource type. Resource types are case-insensitive and you can specify the singular, plural, or abbreviated forms. \
 name : specifies the name of the resource. Names are case-sensitive. If the name is omitted, details for all resources are displayed. \
 flags : specifies optional flags.
@@ -79,14 +79,17 @@ flags : specifies optional flags.
 Create a resource from a file or from stdin.
 
 #### Create a pod using the data in pod.json.
+```
 kubectl create -f ./pod.json
-
+```
 #### Create a pod based on the JSON passed into stdin.
+```
 cat pod.json | kubectl create -f -
-
+```
 #### Edit the data in docker-registry.yaml in JSON using the v1 API format then create the resource using the edited data.
+```
 kubectl create -f docker-registry.yaml --edit --output-version=v1 -o json
-
+```
 #### Create all the resources avaibale in the folder 
 kubeclt create -f <folder_name
 
