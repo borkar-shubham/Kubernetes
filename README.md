@@ -1,6 +1,6 @@
 # Kubernetes
 
-Kubectl is a command line interface for running commands against Kubernetes clusters. \
+Kubectl is a command line interface for running commands against Kubernetes clusters.
 
 ### Installation
 The kubectl version has to be within one minor version difference of the Kubernetes cluster. For example, a v1.2 client should work with v1.1, v1.2, and v1.3 master.
