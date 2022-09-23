@@ -65,11 +65,12 @@ kubectl completion zsh "${fpath[1]}/_kubectl"
 ```
 ## Syntax
 Kubectl is a powerful tool to manage each object on a Kubernetes cluster. The command has a simple and unique syntax to manage everything :
-
+```
 kubectl [command] [TYPE] [NAME] [flags]
-command : specifies the operation that you want to perform on one or more resources (create, get, describe, delete)
-type : specifies the resource type. Resource types are case-insensitive and you can specify the singular, plural, or abbreviated forms
-name : specifies the name of the resource. Names are case-sensitive. If the name is omitted, details for all resources are displayed
+```
+command : specifies the operation that you want to perform on one or more resources (create, get, describe, delete). 
+type : specifies the resource type. Resource types are case-insensitive and you can specify the singular, plural, or abbreviated forms. \
+name : specifies the name of the resource. Names are case-sensitive. If the name is omitted, details for all resources are displayed. \
 flags : specifies optional flags.
 
 ## Useful basic commands
