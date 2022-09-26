@@ -223,6 +223,86 @@ kubectl get rc/web service/frontend pods/<pod-name
 ```
 kubectl get all
 ```
+### [Set]
+Configure application resources.
+
+#### Update deployment 'registry' with a new environment variable
+```
+kubectl set env deployment/registry STORAGE_DIR=/local
+```
+#### List the environment variables defined on a deployments 'sample-build'
+```
+kubectl set env deployment/sample-build --list
+```
+#### List the environment variables defined on all pods
+```
+kubectl set env pods --all --list
+```
+#### Output modified deployment in YAML, and does not alter the object on the server
+```
+kubectl set env deployment/sample-build STORAGE_DIR=/data -o yaml
+```
+#### Update all containers in all replication controllers in the project to have ENV=prod
+```
+kubectl set env rc --all ENV=prod
+```
+#### Import environment from a secret
+```
+kubectl set env --from=secret/mysecret deployment/myapp
+```
+#### Import environment from a config map with a prefix
+```
+kubectl set env --from=configmap/myconfigmap --prefix=MYSQL_ deployment/myapp
+```
+#### Remove the environment variable ENV from container 'c1' in all deployment configs
+```
+kubectl set env deployments --all --containers="c1" ENV-
+```
+#### Remove the environment variable ENV from a deployment definition on disk and update the deployment config on the server
+```
+kubectl set env -f deploy.json ENV-
+```
+#### Set some of the local shell environment into a deployment config on the server
+```
+env | grep RAILS_ | kubectl set env -e - deployment/registry
+```
+#### Set a deployment's nginx container image to 'nginx:1.9.1', and its busybox container image to 'busybox'.
+```
+kubectl set image deployment/nginx busybox=busybox nginx=nginx:1.9.1
+```
+#### Update all deployments' and rc's nginx container's image to 'nginx:1.9.1'
+```
+kubectl set image deployments,rc nginx=nginx:1.9.1 --all
+```
+#### Update image of all containers of daemonset abc to 'nginx:1.9.1'
+```
+kubectl set image daemonset abc *=nginx:1.9.1
+```
+#### Print result (in yaml format) of updating nginx container image from local file, without hitting the server
+```
+kubectl set image -f path/to/file.yaml nginx=nginx:1.9.1 --local -o yaml
+```
+#### Set a deployments nginx container cpu limits to "200m" and memory to "512Mi"
+```
+kubectl set resources deployment nginx -c=nginx --limits=cpu=200m,memory=512Mi
+```
+#### Set the resource request and limits for all containers in nginx
+```
+kubectl set resources deployment nginx --limits=cpu=200m,memory=512Mi --requests=cpu=100m,memory=256Mi
+```
+#### Remove the resource requests for resources on containers in nginx
+```
+kubectl set resources deployment nginx --limits=cpu=0,memory=0 --requests=cpu=0,memory=0
+```
+#### Print the result (in yaml format) of updating nginx container limits from a local, without hitting the server
+kubectl set resources -f path/to/file.yaml --limits=cpu=200m,memory=512Mi --local -o yaml
+
+#### Set Deployment nginx-deployment's ServiceAccount to serviceaccount1
+kubectl set serviceaccount deployment nginx-deployment serviceaccount1
+
+#### Print the result (in yaml format) of updated nginx deployment with serviceaccount from local file, without hitting apiserver
+kubectl set sa -f nginx-deployment.yaml serviceaccount1 --local --dry-run -o yaml
+
 ### [Run]
 Create and run a particular image, possibly replicated.
 
@@ -274,70 +354,6 @@ kubectl run pi --image=perl --restart=OnFailure -- perl -Mbignum=bpi -wle 'print
 ```
 kubectl run pi --schedule="0/5 * * * ?" --image=perl --restart=OnFailure -- perl -Mbignum=bpi -wle 'print bpi(2000)'
 ```
-### [Set]
-Configure application resources.
-
-#### Update deployment 'registry' with a new environment variable
-kubectl set env deployment/registry STORAGE_DIR=/local
-
-#### List the environment variables defined on a deployments 'sample-build'
-kubectl set env deployment/sample-build --list
-
-#### List the environment variables defined on all pods
-kubectl set env pods --all --list
-
-#### Output modified deployment in YAML, and does not alter the object on the server
-kubectl set env deployment/sample-build STORAGE_DIR=/data -o yaml
-
-#### Update all containers in all replication controllers in the project to have ENV=prod
-kubectl set env rc --all ENV=prod
-
-#### Import environment from a secret
-kubectl set env --from=secret/mysecret deployment/myapp
-
-#### Import environment from a config map with a prefix
-kubectl set env --from=configmap/myconfigmap --prefix=MYSQL_ deployment/myapp
-
-#### Remove the environment variable ENV from container 'c1' in all deployment configs
-kubectl set env deployments --all --containers="c1" ENV-
-
-#### Remove the environment variable ENV from a deployment definition on disk and update the deployment config on the server
-kubectl set env -f deploy.json ENV-
-
-#### Set some of the local shell environment into a deployment config on the server
-env | grep RAILS_ | kubectl set env -e - deployment/registry
-
-#### Set a deployment's nginx container image to 'nginx:1.9.1', and its busybox container image to 'busybox'.
-kubectl set image deployment/nginx busybox=busybox nginx=nginx:1.9.1
-
-#### Update all deployments' and rc's nginx container's image to 'nginx:1.9.1'
-kubectl set image deployments,rc nginx=nginx:1.9.1 --all
-
-#### Update image of all containers of daemonset abc to 'nginx:1.9.1'
-kubectl set image daemonset abc *=nginx:1.9.1
-
-#### Print result (in yaml format) of updating nginx container image from local file, without hitting the server
-kubectl set image -f path/to/file.yaml nginx=nginx:1.9.1 --local -o yaml
-
-#### Set a deployments nginx container cpu limits to "200m" and memory to "512Mi"
-kubectl set resources deployment nginx -c=nginx --limits=cpu=200m,memory=512Mi
-
-#### Set the resource request and limits for all containers in nginx
-kubectl set resources deployment nginx --limits=cpu=200m,memory=512Mi --requests=cpu=100m,memory=256Mi
-
-#### Remove the resource requests for resources on containers in nginx
-kubectl set resources deployment nginx --limits=cpu=0,memory=0 --requests=cpu=0,memory=0
-
-#### Print the result (in yaml format) of updating nginx container limits from a local, without hitting the server
-kubectl set resources -f path/to/file.yaml --limits=cpu=200m,memory=512Mi --local -o yaml
-
-#### Set Deployment nginx-deployment's ServiceAccount to serviceaccount1
-kubectl set serviceaccount deployment nginx-deployment serviceaccount1
-
-#### Print the result (in yaml format) of updated nginx deployment with serviceaccount from local file, without hitting apiserver
-kubectl set sa -f nginx-deployment.yaml serviceaccount1 --local --dry-run -o yaml
-Useful deploy commands
-
 
 ### #Autoscale
 Creates an autoscaler that automatically chooses and sets the number of pods that run in a kubernetes cluste
