@@ -64,7 +64,7 @@ Set the kubectl completion code for zsh[1] to autoload on startup
 kubectl completion zsh "${fpath[1]}/_kubectl"
 ```
 ## Syntax
-Kubectl is a powerful tool to manage each object on a Kubernetes cluster. The command has a simple and unique syntax to manage everything :
+Kubectl is a powerful tool to manage each object on a Kubernetes cluster.
 ```
 kubectl [command] [TYPE] [NAME] [flags]
 ```
