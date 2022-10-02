@@ -74,7 +74,10 @@ name : specifies the name of the resource. Names are case-sensitive. If the name
 flags : specifies optional flags.
 
 ## Useful basic commands
-
+Get the syntax and fields details of any kind of objects. (replicaset, deployment, service, pod, etc.)
+```
+kubectl explain <object>
+```
 ### [Create]
 Create a resource from a file or from stdin.
 
