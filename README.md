@@ -474,9 +474,8 @@ kubectl drain foo --grace-period=90
 kubectl drain <node_name--ignore-daemonsets
 ```
 ### [Taint]
-```
 Update the taints on one or more nodes.
-```
+
 #### Update node 'foo' with a taint with key 'dedicated' and value 'special-user' and effect 'NoSchedule'. If a taint with that key and effect already exists, its value is replaced as specified.
 ```
 kubectl taint nodes foo dedicated=special-user:NoSchedule
