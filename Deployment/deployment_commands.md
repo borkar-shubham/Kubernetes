@@ -28,3 +28,4 @@ kubectl set image deployment/nginx-deployment <current_image=new_image>
 Edit the deployment
 ```
 kubectl edit deployment/<deployment-name>
+```
