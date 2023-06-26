@@ -206,7 +206,7 @@ kubectl get replicationcontroller web
 ```
 #### List a single pod in JSON output format.
 ```
-kubectl get -o json pod <pod-name>
+kubectl get pod <pod-name> -o json
 ```
 #### List a pod identified by type and name specified in "pod.yaml" in JSON output format.
 ```
@@ -227,6 +227,10 @@ kubectl get rc/web service/frontend pods/<pod-name
 #### List all resources with different types.
 ```
 kubectl get all
+```
+#### View current configs.
+```
+kubectl config view
 ```
 ### [Set]
 Configure application resources.
