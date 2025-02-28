@@ -1,14 +1,29 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: nginx
+  name: nginx-ingress
   annotations:
-    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
+  ingressClassName: nginx
   rules:
-    - host: nginx.highlyavailable.systems
-      http:
-        paths:
-          - backend:
-              serviceName: nginx
-              servicePort: 80
+  - host: nginx.local
+    http:
+      paths:
+      - path: /app
+        pathType: Prefix
+        backend:
+          service:
+            name: nginx-service #Replace with your service
+            port:
+              number: 80 #rReplace the port on which the above service is running.
+  # - host: www.flipkart.com
+  #   http:
+  #     paths:
+  #     - path: /fasion
+  #       pathType: Prefix
+  #       backend:
+  #         service:
+  #           name: fasion-service
+  #           port:
+  #             number: 80
